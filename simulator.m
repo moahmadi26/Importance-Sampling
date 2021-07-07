@@ -1,5 +1,5 @@
+%loading model parameters
 model
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %simulation runs
 N = 1000;
