@@ -2,7 +2,7 @@
 model
 
 %simulation runs
-N = 1000;
+N = 10000;
 
 %accumulator
 mn = 0;
@@ -43,6 +43,20 @@ for i = 1:N
        elseif flag == 1
             h_tilde = calculatePredilection(x,k,S,F,delta_t,xp);
        end
+       
+       alpha = h_tilde./h;
+       
+       for it = 1:length(alpha)
+           if isnan(alpha(it))
+               alpha(it) = 1;
+           end
+           
+           if alpha(it)<0
+               alpha(it) = 1;
+           end
+       end
+       
+       h_tilde = alpha .* h; 
        h0_tilde = sum(h_tilde);
        
        r1 = rand;
