@@ -2,7 +2,7 @@
 input('Model Name? ')
 
 %simulation runs
-N = 10000;
+N = 1000;
 
 %accumulator
 mn = 0;
@@ -13,7 +13,8 @@ for i = 1:N
    delta_t = tmax - t;
    x = X0;
    w = 1;
-
+   pArray(i) = mn/i;
+   
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
        h = calculatePropensity(x, k);
@@ -37,7 +38,6 @@ for i = 1:N
        end
        
        if flag == 0
-            %h_tilde = calculatePropensity(x, k);
             h_tilde = h;
       
        elseif flag == 1
@@ -82,4 +82,12 @@ for i = 1:N
        
    end
 end
-p = mn/N;
+p = pArray(end);
+
+%Plotting Convergence
+runs = 0:length(pArray)-1;
+figure(1)
+plot(runs, pArray)
+xlabel("Runs")
+ylabel("Estimated Probability")
+title("Guided wSSA Convergence")
