@@ -1,5 +1,5 @@
 %loading model parameters
-model
+sixrxn
 
 %simulation runs
 N = 10000;
