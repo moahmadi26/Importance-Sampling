@@ -7,6 +7,7 @@ N = 1000;
 %accumulator
 mn = 0;
 
+pArray = zeros(N);
 
 for i = 1:N
    t = 0;
@@ -46,15 +47,8 @@ for i = 1:N
        
        alpha = h_tilde./h;
        
-       for it = 1:length(alpha)
-           if isnan(alpha(it))
-               alpha(it) = 1;
-           end
-           
-           if alpha(it)<0
-               alpha(it) = 1;
-           end
-       end
+       %choose method "A", "B" or "C" as second argument of reslveNegatives
+       alpha = resolveNegatives(alpha, "C");
        
        h_tilde = alpha .* h; 
        h0_tilde = sum(h_tilde);
