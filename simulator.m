@@ -6,6 +6,7 @@ N = 1000;
 
 %accumulator
 mn = 0;
+squareSum = 0;
 
 pArray = zeros(N);
 
@@ -23,6 +24,7 @@ for i = 1:N
        
        if xp == F'*x
           mn = mn + w;
+          squareSum = squareSum + w^2;
           break;
        end
        
@@ -77,6 +79,8 @@ for i = 1:N
    end
 end
 p = pArray(end);
+var = squareSum/N - p^2;
+
 
 %Plotting Convergence
 runs = 0:length(pArray)-1;
