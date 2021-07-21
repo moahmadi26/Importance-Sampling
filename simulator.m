@@ -8,7 +8,7 @@ N = 1000;
 mn = 0;
 squareSum = 0;
 
-pArray = zeros(N);
+pArray = zeros(N,1);
 
 for i = 1:N
    t = 0;
@@ -80,6 +80,9 @@ for i = 1:N
 end
 p = pArray(end);
 var = squareSum/N - p^2;
+SE = sqrt(p*(1-p)/N);
+zstar = 1.64485;
+conf = [p-zstar*SE,p+zstar*SE]; %90% confidence interval
 
 
 %Plotting Convergence
