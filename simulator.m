@@ -2,7 +2,7 @@
 input('Model Name? ')
 
 %simulation runs
-N = 1000;
+N = 10000;
 
 %accumulator
 mn = 0;
@@ -16,6 +16,7 @@ for i = 1:N
    x = X0;
    w = 1;
    pArray(i) = mn/i;
+   i
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
@@ -80,15 +81,16 @@ for i = 1:N
 end
 p = pArray(end);
 var = squareSum/N - p^2;
-SE = sqrt(p*(1-p)/N);
-zstar = 1.64485;
-conf = [p-zstar*SE,p+zstar*SE]; %90% confidence interval
+SE = (1/N)*sqrt(var);
+zstar = 1.96;
+conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
 
 
 %Plotting Convergence
 runs = 0:length(pArray)-1;
+true = 0.0433*ones(size(runs));
 figure(1)
-plot(runs, pArray)
+plot(runs, pArray, runs, true)
 xlabel("Runs")
 ylabel("Estimated Probability")
 title("Guided wSSA Convergence")
