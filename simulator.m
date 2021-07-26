@@ -2,7 +2,7 @@
 input('Model Name? ')
 
 %simulation runs
-N = 10000;
+N = 1000;
 
 %accumulator
 mn = 0;
@@ -15,7 +15,6 @@ for i = 1:N
    delta_t = tmax - t;
    x = X0;
    w = 1;
-   pArray(i) = mn/i;
    i
    
    while t<tmax
@@ -78,6 +77,7 @@ for i = 1:N
        x = x + S(:,j);
        
    end
+   pArray(i) = mn/i;
 end
 p = pArray(end);
 var = squareSum/N - p^2;
