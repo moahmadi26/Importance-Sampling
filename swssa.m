@@ -63,10 +63,9 @@ for i = 1:N
 end
 p = pArray(end);
 var = squareSum/N - p^2;
-SE = sqrt(p*(1-p)/N);
+SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-
 
 
 
