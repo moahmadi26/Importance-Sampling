@@ -1,9 +1,9 @@
-input('model name?')
-input('swssa specific input?')
+input('Model Name? ')
+input('swSSA Specific Input? ')
 
 
 %simulation runs
-N = 100000;
+N = 1000;
 
 %accumulator
 mn = 0;
@@ -12,12 +12,13 @@ squareSum = 0;
 pArray = zeros(N,1);
 
 for i = 1:N
+   i
    t = 0;
    x = X0;
    w = 1;
    pArray(i) = mn/i;
    
-   a = calculatePropensity(x, k, S);
+   a = calculatePropensity(x, k, S_in);
    a0 = sum(a);
    rho = a/a0;
    gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -52,7 +53,7 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,it); 
         
-       a = calculatePropensity(x, k, S);
+       a = calculatePropensity(x, k, S_in);
        a0 = sum(a);
        rho = a/a0;
        gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);

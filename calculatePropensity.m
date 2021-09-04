@@ -1,4 +1,4 @@
-function h = calculatePropensity(X,k,S)
+function h = calculatePropensity(X,k,S_in)
 %     old function, only works for sixrxn:
 %     h(1,1) = k(1)*X(1)*X(2);
 %     h(2,1) = k(2)*X(3);
@@ -8,12 +8,10 @@ function h = calculatePropensity(X,k,S)
 %     h(6,1) = k(6)*X(6);
 
 %     new function, should work for any model:
-for j = 1:size(S,2)
+for j = 1:size(S_in,2)
     h(j,1) = k(j);
-    for i = 1:size(S,1)
-        if S(i,j) < 0
-            h(j,1) = h(j)*X(i)^(-S(i,j));
-        end
+    for i = 1:size(S_in,1)
+        h(j,1) = h(j)*X(i)^(S_in(i,j));
     end
 end
 
