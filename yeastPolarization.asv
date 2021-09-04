@@ -36,17 +36,19 @@ X0 = [50;
       0;
       0]; %Initial state
 
-F = zeros(7,1);
-F(6,1) = 1; %Target condition matrix (F^T*x_t=xp)
+F = zeros(2,1);
+F(2,1) = 1; %Target condition matrix (F^T*x_t=xp)
 
-xp = [50]; %target state (F^T*x_t=xp)
+xp = [30]; %target state (F^T*x_t=xp)
 
-tmax = 20; %total simulation time
+tmax = 10; %total simulation time
 
 
 %% Original wSSA Parameters
 
-alpha = ones(8,1);
+delta = 2;
+alpha = [delta;
+         1/delta];
      
 %% swSSA Parameters
 

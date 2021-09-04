@@ -1,3 +1,4 @@
+%% Model Details
 k = [0.12;
      1]; %rate constants
 

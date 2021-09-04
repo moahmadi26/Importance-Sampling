@@ -10,9 +10,6 @@ S_out = [1, 1;
      
 S = S_out - S_in; % stoichiometric matrix
 
-% S = [0,1;
-%     0,-1]'; %Stoichiometric matrix
-
 X0 = [1;
      40]; %Initial state
 
