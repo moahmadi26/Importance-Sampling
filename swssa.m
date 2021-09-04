@@ -3,7 +3,7 @@ input('swSSA Specific Input? ')
 
 
 %simulation runs
-N = 1000;
+N = 10000;
 
 %accumulator
 mn = 0;
@@ -11,8 +11,9 @@ squareSum = 0;
 
 pArray = zeros(N,1);
 
+tic
 for i = 1:N
-   i
+   %i
    t = 0;
    x = X0;
    w = 1;
@@ -62,6 +63,8 @@ for i = 1:N
        
    end
 end
+toc
+
 p = pArray(end);
 var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);

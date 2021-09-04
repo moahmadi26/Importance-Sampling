@@ -1,4 +1,5 @@
 %% Model Details
+%from swSSA paper
 k = [0.0038;
      0.0004;
      0.042;

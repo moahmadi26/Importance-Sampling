@@ -1,13 +1,13 @@
 input('Model Name? ')
 
-N = 1000;
+N = 10000;
 q = 0;
 pArray = zeros(1,N);
 squareSum = 0;
 
-
+tic
 for i = 1:N
-    i
+    %i
     w = 1;
     t = 0;
     x = X0;
@@ -49,6 +49,7 @@ for i = 1:N
     end
     pArray(i) = q/N;
 end
+toc
 
 p = pArray(end)
 var = squareSum/N - p^2;

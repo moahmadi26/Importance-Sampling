@@ -2,7 +2,7 @@
 input('Model Name? ')
 
 %simulation runs
-N = 1000;
+N = 10000;
 
 %accumulator
 mn = 0;
@@ -10,12 +10,13 @@ squareSum = 0;
 
 pArray = zeros(N,1);
 
+tic
 for i = 1:N
    t = 0;
    delta_t = tmax - t;
    x = X0;
    w = 1;
-   i
+   %i
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
@@ -79,6 +80,8 @@ for i = 1:N
    end
    pArray(i) = mn/i;
 end
+toc
+
 p = pArray(end)
 var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);

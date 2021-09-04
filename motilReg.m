@@ -1,4 +1,5 @@
 %% Model Details
+%from guided proposals paper
 k = [0.1;
      0.0002;
      1;

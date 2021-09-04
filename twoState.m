@@ -1,4 +1,5 @@
 %% Model Details
+%from swSSA paper
 k = [0.12;
      1]; %rate constants
 

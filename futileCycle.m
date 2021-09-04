@@ -1,4 +1,5 @@
 %% Model Details
+%from original wSSA paper
 k = [1;
     1;
     0.1;
