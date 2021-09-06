@@ -1,8 +1,8 @@
-function [p, pArray, conf, tEnd] = SSA(modelFile)
+function [p, pArray, conf, tEnd] = SSA(modelFile, N)
 %input('Model Name? ')
 eval(modelFile)
 
-N = 1000;
+%N = 1000;
 q = 0;
 pArray = zeros(1,N);
 

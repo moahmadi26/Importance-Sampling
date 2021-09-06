@@ -1,10 +1,10 @@
-function [p, pArray, var, conf, tEnd] = swSSA(modelFile)
+function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
 %input('Model Name? ')
 %input('swSSA Specific Input? ')
 eval(modelFile)
 
 %simulation runs
-N = 10000;
+%N = 10000;
 
 %accumulator
 mn = 0;

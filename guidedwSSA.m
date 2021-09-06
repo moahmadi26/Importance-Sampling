@@ -1,10 +1,10 @@
-function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile)
+function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N)
 %loading model parameters
 %input('Model Name? ')
 eval(modelFile)
 
 %simulation runs
-N = 1000;
+%N = 1000;
 
 %accumulator
 mn = 0;

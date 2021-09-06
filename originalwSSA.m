@@ -1,8 +1,8 @@
-function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile)
+function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile, N)
 %input('Model Name? ')
 eval(modelFile)
 
-N = 1000;
+%N = 1000;
 q = 0;
 pArray = zeros(1,N);
 squareSum = 0;
