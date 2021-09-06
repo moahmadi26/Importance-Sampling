@@ -1,4 +1,4 @@
-function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N)
+function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N, negativeMethod)
 %loading model parameters
 %input('Model Name? ')
 eval(modelFile)
@@ -52,7 +52,7 @@ for i = 1:N
        alph = h_tilde./h;
        
        %choose method "A", "B" or "C" as second argument of reslveNegatives
-       alph = resolveNegatives(alph, "C");
+       alph = resolveNegatives(alph, negativeMethod);
        
        h_tilde = alph .* h; 
        h0_tilde = sum(h_tilde);

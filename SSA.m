@@ -41,7 +41,7 @@ for i = 1:N
        a = calculatePropensity(x,k,S_in);
        a0 = sum(a);
     end
-    pArray(i) = q/N;
+    pArray(i) = q/i;
 end
 tEnd = toc(tStart);
 

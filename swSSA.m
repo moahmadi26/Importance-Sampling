@@ -63,6 +63,7 @@ for i = 1:N
        b0 = sum(b);
        
    end
+   pArray(i) = mn/i;
 end
 tEnd = toc(tStart);
 

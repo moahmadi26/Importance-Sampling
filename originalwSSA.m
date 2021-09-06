@@ -49,7 +49,7 @@ for i = 1:N
        b = a.*alph;
        b0 = sum(b);
     end
-    pArray(i) = q/N;
+    pArray(i) = q/i;
 end
 tEnd = toc(tStart);
 
