@@ -25,7 +25,7 @@ tmax = 10; %total simulation time
 %% Original wSSA Parameters
 
 delta = 2;
-alpha = [delta;
+alph = [delta;
          1/delta];
      
 %% swSSA Parameters

@@ -1,6 +1,7 @@
-input('Model Name? ')
-input('swSSA Specific Input? ')
-
+function [p, pArray, var, conf, tEnd] = swSSA(modelFile)
+%input('Model Name? ')
+%input('swSSA Specific Input? ')
+eval(modelFile)
 
 %simulation runs
 N = 10000;
@@ -11,7 +12,7 @@ squareSum = 0;
 
 pArray = zeros(N,1);
 
-tic
+tStart = tic;
 for i = 1:N
    %i
    t = 0;
@@ -63,14 +64,14 @@ for i = 1:N
        
    end
 end
-toc
+tEnd = toc(tStart);
 
 p = pArray(end);
 var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-
+end
 
 
 function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)
@@ -86,6 +87,5 @@ function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)
             end
         end    
     end
-    
 end
 

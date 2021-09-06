@@ -61,7 +61,7 @@ tmax = 10; %total simulation time
 
 %% Original wSSA Parameters
 
-alpha = ones(12,1);
+alph = ones(12,1);
      
 %% swSSA Parameters
 

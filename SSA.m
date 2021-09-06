@@ -1,10 +1,12 @@
-input('Model Name? ')
+function [p, pArray, conf, tEnd] = SSA(modelFile)
+%input('Model Name? ')
+eval(modelFile)
 
-N = 10000;
+N = 1000;
 q = 0;
 pArray = zeros(1,N);
 
-tic
+tStart = tic;
 for i = 1:N
     %i
     t = 0;
@@ -41,9 +43,9 @@ for i = 1:N
     end
     pArray(i) = q/N;
 end
-toc
+tEnd = toc(tStart);
 
-p = pArray(end)
+p = pArray(end);
 SE = sqrt(p*(1-p)/N);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval

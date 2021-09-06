@@ -47,7 +47,7 @@ tmax = 100; %total simulation time
 
 %% Original wSSA Parameters
 gamma = 0.5;
-alpha = [1;
+alph = [1;
          1;
          gamma;
          1;

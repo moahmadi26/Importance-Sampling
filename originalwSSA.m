@@ -1,11 +1,13 @@
-input('Model Name? ')
+function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile)
+%input('Model Name? ')
+eval(modelFile)
 
-N = 10000;
+N = 1000;
 q = 0;
 pArray = zeros(1,N);
 squareSum = 0;
 
-tic
+tStart = tic;
 for i = 1:N
     %i
     w = 1;
@@ -14,7 +16,7 @@ for i = 1:N
     
     a = calculatePropensity(x,k,S_in);
     a0 = sum(a);
-    b = a.*alpha;
+    b = a.*alph;
     b0 = sum(b);
     
     while t < tmax
@@ -44,15 +46,16 @@ for i = 1:N
        
        a = calculatePropensity(x,k,S_in);
        a0 = sum(a);
-       b = a.*alpha;
+       b = a.*alph;
        b0 = sum(b);
     end
     pArray(i) = q/N;
 end
-toc
+tEnd = toc(tStart);
 
-p = pArray(end)
+p = pArray(end);
 var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
+end

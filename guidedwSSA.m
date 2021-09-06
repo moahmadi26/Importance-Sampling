@@ -1,8 +1,10 @@
+function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile)
 %loading model parameters
-input('Model Name? ')
+%input('Model Name? ')
+eval(modelFile)
 
 %simulation runs
-N = 10000;
+N = 1000;
 
 %accumulator
 mn = 0;
@@ -10,13 +12,12 @@ squareSum = 0;
 
 pArray = zeros(N,1);
 
-tic
+tStart = tic;
 for i = 1:N
    t = 0;
    delta_t = tmax - t;
    x = X0;
    w = 1;
-   %i
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
@@ -48,12 +49,12 @@ for i = 1:N
             h_tilde = calculatePredilection(x,k,S,F,delta_t,xp);
        end
        
-       alpha = h_tilde./h;
+       alph = h_tilde./h;
        
        %choose method "A", "B" or "C" as second argument of reslveNegatives
-       alpha = resolveNegatives(alpha, "C");
+       alph = resolveNegatives(alph, "C");
        
-       h_tilde = alpha .* h; 
+       h_tilde = alph .* h; 
        h0_tilde = sum(h_tilde);
        
        r1 = rand;
@@ -80,14 +81,14 @@ for i = 1:N
    end
    pArray(i) = mn/i;
 end
-toc
+tEnd = toc(tStart);
 
-p = pArray(end)
+p = pArray(end);
 var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-
+end
 
 % %Plotting Convergence
 % runs = 0:length(pArray)-1;
