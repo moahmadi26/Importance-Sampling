@@ -55,12 +55,12 @@ X0 = [2.0;  % pBad
       2.0   % pPhIf 
       0];   % Ara  
 
-F = zeros(20,1);
+F = zeros(21,1);
 F(15,1) = 1; %Target condition matrix (F^T*x_t=xp)
 
 xp = [29]; %target state (F^T*x_t=xp)
 
-tmax = 10; %total simulation time
+tmax = 1000; %total simulation time
 
 
 %% Original wSSA Parameters
