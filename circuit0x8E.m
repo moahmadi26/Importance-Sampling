@@ -58,7 +58,7 @@ X0 = [2.0;  % pBad
 F = zeros(21,1);
 F(15,1) = 1; %Target condition matrix (F^T*x_t=xp)
 
-xp = [29]; %target state (F^T*x_t=xp)
+xp = [30]; %target state (F^T*x_t=xp) 29
 
 tmax = 1000; %total simulation time
 
