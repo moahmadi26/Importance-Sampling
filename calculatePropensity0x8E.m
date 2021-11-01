@@ -20,7 +20,7 @@ nr = 30.0;       % Initial RNAP count
 % Define k topmodel:
 kc_f = 0.05;    % Forward complex formation rate 
 kc_r = 1.0;     % Reverse complex formation rate
-kd = 0.0075;    % Degradation rate 
+kd = 0.00075;    % Degradation rate 
 
 
 % Reaction Propensities
