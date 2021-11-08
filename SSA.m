@@ -12,13 +12,13 @@ for i = 1:N
     t = 0;
     x = X0;
     
-    %a = calculatePropensity(x,k,S_in);
-    a = calculatePropensity0x8E(x);
+    a = calculatePropensity(x,k,S_in);
+    %a = calculatePropensity0x8E(x);
     a0 = sum(a);
     
     while t < tmax
-        %if xp == F'*x
-        if xp < F'*x
+        if xp == F'*x
+        %if xp <= F'*x
             q = q + 1;
             break
         end
@@ -40,8 +40,8 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,mu);
        
-       %a = calculatePropensity(x,k,S_in);
-       a = calculatePropensity0x8E(x);
+       a = calculatePropensity(x,k,S_in);
+       %a = calculatePropensity0x8E(x);
        a0 = sum(a);
     end
     pArray(i) = q/i;
