@@ -1,0 +1,8 @@
+global delta
+biasingValues = 0.05:0.05:1.5;
+
+for i = 1:length(biasingValues)
+    delta = biasingValues(i);
+    p(i) = originalwSSA('circuit0x8E',100);
+end
+

@@ -35,6 +35,8 @@ for i = 1:N
        temp_sum = 0;
        mu = 1;
        
+       b0
+       
        while temp_sum <= r2*b0
            temp_sum = temp_sum + b(mu);
            mu = mu + 1;
@@ -46,8 +48,7 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,mu);
        
-       a = calculatePropensity0x8E(x);
-       %a = calculatePropensity(x,k,S_in);
+       a = calculatePropensity(x,k,S_in);
        a0 = sum(a);
        b = a.*alph;
        b0 = sum(b);
