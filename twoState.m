@@ -24,7 +24,7 @@ tmax = 10; %total simulation time
 
 %% Original wSSA Parameters
 
-delta = 2;
+%delta = 2; %this is near optimal for this model
 alph = [delta;
          1/delta];
      

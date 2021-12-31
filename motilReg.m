@@ -62,6 +62,12 @@ tmax = 10; %total simulation time
 %% Original wSSA Parameters
 
 alph = ones(12,1);
+alph(1) = 1/delta;
+alph(10) = 1/delta;
+alph(12) = 1/delta;
+alph(2) = delta;
+alph(9) = delta;
+alph(11) = delta;
      
 %% swSSA Parameters
 
