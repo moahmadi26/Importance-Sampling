@@ -1,10 +1,10 @@
-function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
-%input('Model Name? ')
+%%function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
+input('Model Name? ')
 %input('swSSA Specific Input? ')
-eval(modelFile)
+%eval(modelFile)
 
 %simulation runs
-%N = 10000;
+N = 10000;
 
 %accumulator
 mn = 0;
@@ -72,7 +72,7 @@ var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-end
+%%end
 
 
 function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)
@@ -80,11 +80,11 @@ function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)
     for j=1:size(assignment, 1)
         if assignment(j) == 'E'
             if rho(j) < rho_zero(j)
-                gamma(j) = ((gamma_max(j)-1)/(rho_zero(j)^2)*((rho_zero(j)-rho(j))^2)) + 1;
+                gamma(j) = (((gamma_max(j)-1)/(rho_zero(j)^2))*((rho_zero(j)-rho(j))^2)) + 1;
             end
         elseif assignment(j) == 'D'
             if rho(j) > rho_zero(j)
-                gamma(j) = 1.0 / (((gamma_max(j)-1)/((rho_zero(j)-1)^2)*((rho_zero(j)-rho(j))^2)) + 1);
+                gamma(j) = 1.0 / ((((gamma_max(j)-1)/((rho_zero(j)-1)^2))*((rho_zero(j)-rho(j))^2)) + 1);
             end
         end    
     end

@@ -1,5 +1,5 @@
 %% Model Details
-%from swSSA paper
+%from dwSSA paper
 k = [0.0038;
      0.0004;
      0.042;
@@ -33,7 +33,7 @@ X0 = [50;
       2;
       0;
       50;
-      0;
+      0;%Mohammad help
       0;
       0]; %Initial state
 
@@ -52,4 +52,10 @@ alph = [1/delta; delta; 1/delta; delta; 1/delta; delta; delta; 1/delta];
      
 %% swSSA Parameters
 
-%Mohammad help
+assignment = ['N'; 'N'; 'N'; 'N'; 'N'; 'D'; 'N'; 'N'];
+
+rho_zero = zeros(8,1);
+rho_zero(6) = 0.15;
+
+gamma_max = ones(8,1);
+gamma_max(6) = 20;
