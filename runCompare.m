@@ -2,10 +2,10 @@ N = 1000;
 n = 1:N;
 modelName = 'futileCycle';
 
-[pSSA, pArraySSA, confSSA, tEndSSA] = SSA('futileCycle',N);
-[pwSSA, pwArraySSA, varwSSA, confwSSA, tEndwSSA] = originalwSSA('futileCycle',N);
-[pstate, pArraystate, varstate, confstate, tEndstate] = swSSA('futileCycle',N);
-[pguided, pArrayguided, varguided, confguided, tEndguided] = guidedwSSA('futileCycle',N, 'C');
+[pSSA, pArraySSA, confSSA, tEndSSA] = SSA(modelName,N);
+[pwSSA, pwArraySSA, varwSSA, confwSSA, tEndwSSA] = originalwSSA(modelName,N);
+[pstate, pArraystate, varstate, confstate, tEndstate] = swSSA(modelName,N);
+[pguided, pArrayguided, varguided, confguided, tEndguided] = guidedwSSA(modelName,N, 'C');
 
 %%
 figure(1)
