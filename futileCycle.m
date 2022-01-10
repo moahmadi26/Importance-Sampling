@@ -56,12 +56,12 @@ alph = [1;
      
 %% swSSA Parameters
 
-assignment = ['N', 'N', 'N', 'N', 'N', 'E'];
+assignment = ['N'; 'N'; 'D'; 'N'; 'N'; 'E'];
 
 rho_zero = zeros(6,1);
 rho_zero(3) = 0.15;
 rho_zero(6) = 0.5;
 
 gamma_max = ones(6,1);
-gamma_max(3) = 8;
-gamma_max(6) = 8;
+gamma_max(3) = 2;
+gamma_max(6) = 2;
