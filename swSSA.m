@@ -1,10 +1,10 @@
-%%function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
-input('Model Name? ')
+function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
+%input('Model Name? ')
 %input('swSSA Specific Input? ')
-%eval(modelFile)
+eval(modelFile)
 
 %simulation runs
-N = 10000;
+%N = 10000;
 
 %accumulator
 mn = 0;
@@ -21,6 +21,7 @@ for i = 1:N
    pArray(i) = mn/i;
    
    a = calculatePropensity(x, k, S_in);
+   %a = calculatePropensity0x8E(x);
    a0 = sum(a);
    rho = a/a0;
    gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -56,6 +57,7 @@ for i = 1:N
        x = x + S(:,it); 
         
        a = calculatePropensity(x, k, S_in);
+       %a = calculatePropensity0x8E(x);
        a0 = sum(a);
        rho = a/a0;
        gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -72,7 +74,7 @@ var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-%%end
+end
 
 
 function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)

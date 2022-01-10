@@ -22,6 +22,7 @@ for i = 1:N
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
        h = calculatePropensity(x, k, S_in);
+       %h = calculatePropensity0x8E(x);
        h0 = sum(h);
        
        if xp == F'*x
