@@ -1,5 +1,5 @@
 %% Model Details
-%from dwSSA paper
+%from swSSA paper
 k = [0.0038;
      0.0004;
      0.042;
@@ -33,7 +33,7 @@ X0 = [50;
       2;
       0;
       50;
-      0;%Mohammad help
+      0;
       0;
       0]; %Initial state
 
@@ -47,16 +47,10 @@ tmax = 20; %total simulation time
 
 %% Original wSSA Parameters
 
-delta = 0.725; %near optimal for this scheme
+del
 alph = [1/delta; delta; 1/delta; delta; 1/delta; delta; delta; 1/delta];
 
      
 %% swSSA Parameters
 
-assignment = ['N'; 'N'; 'N'; 'N'; 'N'; 'D'; 'N'; 'N'];
-
-rho_zero = zeros(8,1);
-rho_zero(6) = 0.15;
-
-gamma_max = ones(8,1);
-gamma_max(6) = 20;
+%Mohammad help
