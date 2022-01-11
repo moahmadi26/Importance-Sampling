@@ -1,7 +1,7 @@
 clear;clc;
-N = 5000;
+N = 10000;
 n = 1:N;
-modelName = 'yeastPolarization';
+modelName = 'motilReg';
 
 [pSSA, pArraySSA, confSSA, tEndSSA] = SSA(modelName,N);
 [pwSSA, pwArraySSA, varwSSA, confwSSA, tEndwSSA] = originalwSSA(modelName,N);
@@ -16,7 +16,7 @@ futileTrue = 0.0433*ones(size(n));
 %%
 figure(1)
 hold on
-plot(n,pArraySSA, n,pwArraySSA, n,pArraystate, n,pArrayguided, n, yeastTrue, 'LineWidth', 2)
+plot(n,pArraySSA, n,pwArraySSA, n,pArraystate, n,pArrayguided, n, motilTrue, 'LineWidth', 2)
 legend('SSA', 'wSSA', 'swSSA', 'Guided wSSA', 'True Probability')
 set (gcf, 'color', 'w')
 legend boxoff
