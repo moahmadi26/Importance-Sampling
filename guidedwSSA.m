@@ -4,7 +4,7 @@ function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N, negativeMethod)
 eval(modelFile)
 
 %simulation runs
-%N = 1000;
+%N = 1000000;
 
 %accumulator
 mn = 0;
@@ -33,7 +33,7 @@ for i = 1:N
        
        %evaluate all di
        
-       d = presimulationCheck(x,F,S,k,delta_t,xp,X0);
+       d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
        
        %set h_tilde based on d. if all di>0 don't adjust model
        flag = 0;
@@ -47,7 +47,7 @@ for i = 1:N
             h_tilde = h;
       
        elseif flag == 1
-            h_tilde = calculatePredilection(x,k,S,F,delta_t,xp);
+            h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
        end
        
        alph = h_tilde./h;
