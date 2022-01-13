@@ -1,5 +1,5 @@
 clear;clc;
-N = 10000;
+N = 20000;
 n = 1:N;
 modelName = 'motilReg';
 
