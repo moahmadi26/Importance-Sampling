@@ -1,6 +1,6 @@
 clear;clc;
 N = 1000;
-modelName = 'motilReg';
+modelName = 'circuit0x8E';
 
 [pSSA, pArraySSA, confSSA, tEndSSA] = SSA(modelName,N);
 [pwSSA, pwArraySSA, varwSSA, confwSSA, tEndwSSA] = originalwSSA(modelName,N);

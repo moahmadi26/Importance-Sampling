@@ -21,8 +21,8 @@ for i = 1:N
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
-       h = calculatePropensity(x, k, S_in);
-       %h = calculatePropensity0x8E(x);
+       %h = calculatePropensity(x, k, S_in);
+       h = calculatePropensity0x8E(x);
        h0 = sum(h);
        
        if xp == F'*x
@@ -33,7 +33,8 @@ for i = 1:N
        
        %evaluate all di
        
-       d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
+       %d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
+       d = presimulationCheck0x8E(x,F,S,delta_t,xp,X0);
        
        %set h_tilde based on d. if all di>0 don't adjust model
        flag = 0;
@@ -47,7 +48,8 @@ for i = 1:N
             h_tilde = h;
       
        elseif flag == 1
-            h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
+            %h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
+            h_tilde = calculatePredilection0x8E(x,S,F,delta_t,xp);
        end
        
        alph = h_tilde./h;
