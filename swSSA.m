@@ -1,6 +1,7 @@
 function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
 %input('Model Name? ')
 %input('swSSA Specific Input? ')
+%global gamma_value
 eval(modelFile)
 
 %simulation runs

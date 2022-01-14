@@ -70,4 +70,15 @@ alph(15) = delta;
      
 %% swSSA Parameters
 
-%Mohammad help
+assignment = ['N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'N'; 'E'; 'E'; 'D'];
+
+rho_zero = zeros(15,1);
+rho_zero(13) = 0.5;
+rho_zero(14) = 0.5;
+rho_zero(15) = 0.15;
+
+gamma_max_temp = 4.5;
+gamma_max = ones(15,1);
+gamma_max(13) = gamma_max_temp;
+gamma_max(14) = gamma_max_temp;
+gamma_max(15) = gamma_max_temp;

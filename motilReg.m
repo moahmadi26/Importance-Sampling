@@ -82,7 +82,7 @@ rho_zero(10) = 0.5;
 rho_zero(11) = 0.15;
 rho_zero(12) = 0.5;
 
-gamma_max_temp = 8;
+gamma_max_temp = 8.25;
 gamma_max = ones(12,1);
 gamma_max(1) = gamma_max_temp;
 gamma_max(2) = gamma_max_temp;
