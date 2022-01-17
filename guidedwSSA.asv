@@ -33,8 +33,8 @@ for i = 1:N
        
        %evaluate all di
        
-       d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
-       %d = presimulationCheck0x8E(x,F,S,delta_t,xp,X0);
+       %d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
+       d = presimulationCheck0x8E(x,F,S,delta_t,xp,X0);
        
        %set h_tilde based on d. if all di>0 don't adjust model
        flag = 0;

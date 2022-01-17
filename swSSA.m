@@ -21,8 +21,8 @@ for i = 1:N
    w = 1;
    pArray(i) = mn/i;
    
-   %a = calculatePropensity(x, k, S_in);
-   a = calculatePropensity0x8E(x);
+   a = calculatePropensity(x, k, S_in);
+   %a = calculatePropensity0x8E(x);
    a0 = sum(a);
    rho = a/a0;
    gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -57,8 +57,8 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,it); 
         
-       %a = calculatePropensity(x, k, S_in);
-       a = calculatePropensity0x8E(x);
+       a = calculatePropensity(x, k, S_in);
+       %a = calculatePropensity0x8E(x);
        a0 = sum(a);
        rho = a/a0;
        gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);

@@ -40,7 +40,7 @@ X0 = [1;
 F = zeros(6,1);
 F(5,1) = 1; %Target condition matrix (F^T*x_t=xp)
 
-xp = [40]; %target state (F^T*x_t=xp)
+xp = [25]; %target state (F^T*x_t=xp)
 
 tmax = 100; %total simulation time
 
