@@ -4,7 +4,7 @@ biasingValues = 0.05:0.05:1;
 
 for i = 1:length(biasingValues)
     delta = biasingValues(i);
-    [p(i), ~, s(i), ~, ~] = originalwSSA('motilReg',1000);
+    [p(i), ~, s(i), ~, ~] = originalwSSA('futileCycle',1000);
 end
 
 circuitTrue = 0.01587*ones(size(p));

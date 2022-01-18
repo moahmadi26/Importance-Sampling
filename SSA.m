@@ -1,4 +1,4 @@
-function [p, pArray, conf, tEnd] = SSA(modelFile, N)
+function [p, pArray, var, conf, tEnd] = SSA(modelFile, N)
 %input('Model Name? ')
 eval(modelFile)
 
@@ -49,6 +49,7 @@ end
 tEnd = toc(tStart);
 
 p = pArray(end);
+var = p - p^2;
 SE = sqrt(p*(1-p)/N);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
