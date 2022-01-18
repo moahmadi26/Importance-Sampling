@@ -1,6 +1,6 @@
 function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile, N)
 %input('Model Name? ')
-global delta %uncomment only for use with circuitBiasing.m
+%global delta %uncomment only for use with circuitBiasing.m
 eval(modelFile)
 
 %N = 1000;
@@ -15,8 +15,8 @@ for i = 1:N
     t = 0;
     x = X0;
     
-    %a = calculatePropensity0x8E(x); %only for Lukas' genetic circuit
-    a = calculatePropensity(x,k,S_in); %good for any other model
+    a = calculatePropensity0x8E(x); %only for Lukas' genetic circuit
+    %a = calculatePropensity(x,k,S_in); %good for any other model
     a0 = sum(a);
     b = a.*alph;
     b0 = sum(b);
@@ -46,8 +46,8 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,mu);
        
-       %a = calculatePropensity0x8E(x);
-       a = calculatePropensity(x,k,S_in);
+       a = calculatePropensity0x8E(x);
+       %a = calculatePropensity(x,k,S_in);
        a0 = sum(a);
        b = a.*alph;
        b0 = sum(b);
