@@ -54,15 +54,24 @@ X0 = [70;   % AmtR_protein
 F = zeros(18,1);
 F(8,1) = 1; %Target condition matrix (F^T*x_t=xp)
 
-xp = [30]; %target state (F^T*x_t=xp) 30
+xp = [70]; %target state (F^T*x_t=xp) 30
 
 tmax = 1000; %total simulation time
 
 
 %% Original wSSA Parameters
 
-delta = 0.7; %close to optimal for this scheme
+delta = 0.6; %close to optimal for this scheme
 alph = ones(15,1);
+% alph(1) = 1/delta;
+% alph(2) = delta;
+% alph(4) = delta;
+% alph(5) = delta;
+% alph(6) = delta;
+% alph(7) = 1/delta;
+% alph(8) = 1/delta;
+% alph(11) = 1/delta;
+% alph(12) = 1/delta;
 alph(13) = 1/delta;
 alph(14) = 1/delta;
 alph(15) = delta;

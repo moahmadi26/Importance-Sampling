@@ -63,5 +63,8 @@ rho_zero(3) = 0.15;
 rho_zero(6) = 0.5;
 
 gamma_max = ones(6,1);
-gamma_max(3) = 2.5;
-gamma_max(6) = 2.5;
+% gamma_max(3) = 2.5;
+% gamma_max(6) = 2.5;
+
+gamma_max(3) = gamma_value;
+gamma_max(6) = gamma_value;

@@ -47,8 +47,10 @@ tmax = 20; %total simulation time
 
 %% Original wSSA Parameters
 
-delta = 0.725; %near optimal for this scheme
-alph = [1/delta; delta; 1/delta; delta; 1/delta; delta; delta; 1/delta];
+delta = 0.5; %near optimal for this scheme
+%alph = [1/delta; delta; 1/delta; delta; 1/delta; delta; delta; 1/delta];
+alph = ones(8,1);
+alph(6) = delta;
 
      
 %% swSSA Parameters
