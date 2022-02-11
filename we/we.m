@@ -1,8 +1,11 @@
+t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 2;
+N = 30;
 time_step = 1;
 bin_pop = 100;
+samples = (0);
+samples(end) = [];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,7 +69,7 @@ for i = 1:N
                     curr_x = bin_obj(ii).traj_list(iii).x;
                     if curr_time < tmax
                         flag = false;
-                        while (curr_time - bin_obj(ii).traj_list(iii).time) < 1
+                        while (curr_time - bin_obj(ii).traj_list(iii).time) < time_step
                             a = calculatePropensity(curr_x,k,S_in);
                             a0 = sum(a);
                             r1 = rand;
@@ -112,7 +115,6 @@ for i = 1:N
             if sz>0
                 for iii=1:sz
                     if bin_obj(ii).traj_list(iii).bin ~= ii
-                        count = count + 1;
                         if bin_obj(ii).traj_list(iii).bin <= 25
                             bin_obj(25).traj_list(end+1) = bin_obj(ii).traj_list(iii);
                         elseif bin_obj(ii).traj_list(iii).bin <= 50
@@ -138,7 +140,6 @@ for i = 1:N
                         if bin_obj(ii).traj_list(iii).bin ~= ii
                             bin_obj(ii).traj_list(iii) = [];
                             flag_ = true;
-                            count = count + 1;
                             break
                         end
                     end
@@ -172,17 +173,19 @@ for i = 1:N
         for ii=1:sz_25
             num_succ = num_succ + 1;
             sum_succ_weights = sum_succ_weights + bin_obj(25).traj_list(ii).weight;
+            samples(end+1) = bin_obj(25).traj_list(ii).weight;
         end
     end
-
+%{
     for ii=26:51
         sz = bin_size(bin_obj(ii)); 
         for iii=1:sz
             num_fail = num_fail + 1;
             sum_fail_weights = sum_fail_weights + bin_obj(ii).traj_list(iii).weight;
+            samples(end+1) = 0.0;
         end
     end
-
+%}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
        
    
@@ -191,10 +194,11 @@ end
 
 
 
-%tEnd = toc(tStart);
+t_end = toc(t_start);
 
-%p = pArray(end);
-%var = squareSum/N - p^2;
+p = sum_succ-weights/N;
+%v = var(samples);
+
 %SE = (1/sqrt(N))*sqrt(var);
 %zstar = 1.96;
 %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
