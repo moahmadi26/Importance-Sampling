@@ -1,11 +1,6 @@
-%a=[1, 2, 3, 4]; 
-%a(3) = [];
-%size(a)
-
-rng(254);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 100;
+N = 2;
 time_step = 1;
 bin_pop = 100;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,9 +152,9 @@ for i = 1:N
             sz = bin_size(bin_obj(ii));
             if sz > 0
                 if sz < bin_pop
-                    bin_obj(ii) = populate(bin_obj(ii));
+                    bin_obj(ii) = populate(bin_obj(ii), bin_pop);
                 elseif sz > bin_pop
-                    bin_obj(ii) = merge(bin_obj(ii));
+                    bin_obj(ii) = merge(bin_obj(ii), bin_pop);
                 end
             end
         end
