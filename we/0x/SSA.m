@@ -1,6 +1,6 @@
 circuit0x8E;
 
-N = 10000;
+N = 1000;
 q = 0;
 pArray = zeros(1,N);
 

@@ -19,7 +19,7 @@ success_bin = 71;
 % Normal bin. Population for normal bins is set to be bin_pop. % Main part 
 % of weighted ensemble. 
 
-% For Yeast Polarization, bins 1 to 70 represent YFP having the
+% For 0x8E, bins 1 to 70 represent YFP having the
 % population 0 to 69 and bin 71 represents YFP having the population 70
 
 for i = 1:71

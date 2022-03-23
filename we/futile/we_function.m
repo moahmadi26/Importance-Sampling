@@ -2,7 +2,7 @@ function [p, t_end, v] = we_function(bin_pop_)
     t_start = tic;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Simulation pararmeters
-    N = 2;
+    N = 10;
     time_step = 1;
     bin_pop = bin_pop_;
     samples = (0);
