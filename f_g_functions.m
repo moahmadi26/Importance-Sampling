@@ -24,6 +24,7 @@ for i=1:length(x)
     end
 end
 
+figure(1)
 least_g_value = 1.0/((((gamma_max_g-1)/((rho_zero_g-1)^2))*((rho_zero_g-1)^2))+1);
 plot(x,g_x, 'LineWidth', 2)
 hold on
@@ -33,8 +34,35 @@ ylim([0 1.2])
 xticks([rho_zero_g])
 xticklabels({'\rho_{0}^{j}'})
 yticks([least_g_value 1])
-yticklabels({'1/\gamma_{j}^{max}'})
+yticklabels({'1/\gamma_{j}^{max}','1'})
 set (gca, 'linewidth', 4)
-
+set(gca,'FontWeight','bold')
+hYLabel = get(gca,'YLabel');
+set(hYLabel,'rotation',0,'VerticalAlignment','middle')
 ax = gca;
-%exportgraphics(ax,'f_func.png','Resolution',96)
+ax.FontSize = 16;
+xlabel('\rho_{j}(x)');
+ylabel('g_{j}(x)')
+exportgraphics(ax,'g_func.png','Resolution',96)
+
+figure(2)
+max_f_value = ((((gamma_max_f-1)/(rho_zero_f^2))*((rho_zero_f)^2))+1);
+plot(x,f_x, 'LineWidth', 2)
+hold on
+plot([rho_zero_f rho_zero_f], [0 1],'--', 'LineWidth', 2)
+plot([0 rho_zero_f-0.05], [1 1],'--', 'LineWidth', 2)
+ylim([0 11])
+xticks([rho_zero_f])
+xticklabels({'\rho_{0}^{j}'})
+yticks([1 max_f_value ])
+yticklabels({'1','\gamma_{j}^{max}'})
+set (gca, 'linewidth', 4)
+set(gca,'FontWeight','bold')
+hYLabel = get(gca,'YLabel');
+set(hYLabel,'rotation',0,'VerticalAlignment','middle')
+ax = gca;
+ay = gca;
+ay.FontSize = 16;
+xlabel('\rho_{j}(x)');
+ylabel('f_{j}(x)');
+exportgraphics(ay,'f_func.png','Resolution',96)
