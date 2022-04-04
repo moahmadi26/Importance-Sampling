@@ -1,5 +1,5 @@
 clear;clc;
-bin_pop_values = 10:20:190;
+bin_pop_values = 10:5:200;
 
 for i = 1:length(bin_pop_values)
     disp(bin_pop_values(i))
@@ -28,7 +28,7 @@ set (gca, 'linewidth', 4)
 set(gca, 'YScale', 'log')
 ylim([10^-09 10^-05])
 ax = gca;
-exportgraphics(ax,'yeast_estimate_log.png','Resolution',96)
+%exportgraphics(ax,'yeast_estimate_log.png','Resolution',96)
 
 
 
@@ -42,7 +42,7 @@ xlabel("Bin Size", 'fontsize', 20)
 ylabel("Time(s)", 'fontsize', 20)
 set (gca, 'linewidth', 4)
 ay=gca;
-exportgraphics(ay,'yeast_time.png','Resolution',96)
+%exportgraphics(ay,'yeast_time.png','Resolution',96)
 
 figure(3)
 hold on
@@ -54,5 +54,5 @@ xlabel("Bin Size", 'fontsize', 20)
 ylabel("Probability", 'fontsize', 20)
 set (gca, 'linewidth', 4)
 az=gca;
-exportgraphics(az,'yeast_estimate.png','Resolution',96)
+%exportgraphics(az,'yeast_estimate.png','Resolution',96)
 

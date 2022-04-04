@@ -2,9 +2,13 @@ function [p, t_end, v] = we_function(bin_pop_)
     t_start = tic;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Simulation pararmeters
-    N = 5;
+    N = 15;
     time_step = 1.5;
     bin_pop = bin_pop_;
+    samples = (0);
+    samples(end) = [];
+    sim_samples = (0);
+    sim_samples(end) = [];
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -33,12 +37,13 @@ function [p, t_end, v] = we_function(bin_pop_)
     
     succ_weights = zeros(1, N);
     num_succ = 0;
+    sum_succ_weights = 0; 
     
     for i = 1:N
         
         i
     
-        sum_succ_weights = 0; 
+        
     
         for ii = 1:71
             bin_obj(ii) = bin(ii);
@@ -166,6 +171,7 @@ function [p, t_end, v] = we_function(bin_pop_)
             for ii=1:sz_71
                 num_succ = num_succ + 1;
                 sum_succ_weights = sum_succ_weights + bin_obj(71).traj_list(ii).weight;
+                samples(end+1) = bin_obj(71).traj_list(ii).weight;
             end
         end
         succ_weights(i) = sum_succ_weights;
@@ -180,7 +186,9 @@ function [p, t_end, v] = we_function(bin_pop_)
         end
     %}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-           
+        sim_samples(end+1) = sum(samples);
+        samples = (0);
+        samples(end) = [];       
        
     end
     
@@ -189,12 +197,13 @@ function [p, t_end, v] = we_function(bin_pop_)
     
     t_end = toc(t_start);
     
-    p = sum(succ_weights)/N;
-    v = var(succ_weights);
+    p = sum_succ_weights/N;
+    p2 = mean(sim_samples);
+    v = var(sim_samples);
     
-    SE = (1/sqrt(N))*sqrt(v);
-    zstar = 1.96;
-    error = zstar*SE;
+    %SE = (1/sqrt(N))*sqrt(v);
+    %zstar = 1.96;
+    %error = zstar*SE;
     %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
 
 end

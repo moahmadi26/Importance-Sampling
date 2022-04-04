@@ -1,9 +1,13 @@
 t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 5;
+N = 15;
 time_step = 1.5;
-bin_pop = 100;
+bin_pop = 10;
+samples = (0);
+samples(end) = [];
+sim_samples = (0);
+sim_samples(end) = [];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -19,7 +23,7 @@ success_bin = 71;
 % Normal bin. Population for normal bins is set to be bin_pop. % Main part 
 % of weighted ensemble. 
 
-% For 0x8E, bins 1 to 70 represent YFP having the
+% For Yeast Polarization, bins 1 to 70 represent YFP having the
 % population 0 to 69 and bin 71 represents YFP having the population 70
 
 for i = 1:71
@@ -31,13 +35,14 @@ end
 circuit0x8E;
 
 succ_weights = zeros(1, N);
+sum_succ_weights = 0; 
+
 num_succ = 0;
 
 for i = 1:N
     
     i
 
-    sum_succ_weights = 0; 
 
     for ii = 1:71
         bin_obj(ii) = bin(ii);
@@ -165,6 +170,7 @@ for i = 1:N
         for ii=1:sz_71
             num_succ = num_succ + 1;
             sum_succ_weights = sum_succ_weights + bin_obj(71).traj_list(ii).weight;
+            samples(end+1) = bin_obj(71).traj_list(ii).weight;
         end
     end
     succ_weights(i) = sum_succ_weights;
@@ -179,7 +185,9 @@ for i = 1:N
     end
 %}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-       
+    sim_samples(end+1) = sum(samples);
+    samples = (0);
+    samples(end) = [];       
    
 end
 
@@ -188,10 +196,11 @@ end
 
 t_end = toc(t_start);
 
-p = sum(succ_weights)/N;
-v = var(succ_weights);
+p = sum_succ_weights/N;
+p2 = mean(sim_samples);
+v = var(sim_samples);
 
-SE = (1/sqrt(N))*sqrt(v);
-zstar = 1.96;
-error = zstar*SE;
+%SE = (1/sqrt(N))*sqrt(v);
+%zstar = 1.96;
+%error = zstar*SE;
 %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval

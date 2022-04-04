@@ -1,11 +1,13 @@
 t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 30;
+N = 15;
 time_step = 1;
 bin_pop = 100;
 samples = (0);
 samples(end) = [];
+sim_samples = (0);
+sim_samples(end) = [];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,7 +190,9 @@ for i = 1:N
 %}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
        
-   
+    sim_samples(end+1) = sum(samples);
+    samples = (0);
+    samples(end) = [];
 end
 
 
@@ -196,8 +200,9 @@ end
 
 t_end = toc(t_start);
 
-p = sum_succ-weights/N;
-%v = var(samples);
+p = sum_succ_weights/N;
+p1 = mean(sim_samples);
+v = var(samples);
 
 %SE = (1/sqrt(N))*sqrt(var);
 %zstar = 1.96;
