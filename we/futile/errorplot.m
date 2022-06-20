@@ -13,6 +13,7 @@ yeastTrue = 1.202e-6*ones(size(p));
 motilTrue = 2.16117e-7*ones(size(p));
 futileTrue = 1.71e-7*ones(size(p));
 
+x = 10:5:200;
 err = zeros(size(x));
 
 for i = 1:size(x, 2)
@@ -38,9 +39,10 @@ legend boxoff
 xlabel("Bin Size", 'fontsize', 20)
 ylabel("Probability", 'fontsize', 20)
 set (gca, 'linewidth', 4)
-%set(gca, 'YScale', 'log')
-ylim([-2*10^-07 7*10^-07])
-%ax = gca;
+set(gca, 'YScale', 'log')
+ylim([10^-09 10^-03])
+ax = gca;
+ax.FontSize = 24;
 %exportgraphics(ax,'yeast_estimate_log.png','Resolution',96)
 
 
@@ -55,6 +57,7 @@ xlabel("Bin Size", 'fontsize', 20)
 ylabel("Time(s)", 'fontsize', 20)
 set (gca, 'linewidth', 4)
 ay=gca;
+ay.FontSize = 24;
 %exportgraphics(ay,'yeast_time.png','Resolution',96)
 
 %{

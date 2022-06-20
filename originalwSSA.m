@@ -1,15 +1,19 @@
-function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile, N)
+%function [p, pArray, var, conf, tEnd] = originalwSSA(modelFile, N)
 %input('Model Name? ')
-global delta %uncomment only for use with circuitBiasing.m
-eval(modelFile)
+%global delta %uncomment only for use with circuitBiasing.m
+%eval(modelFile)
 
-%N = 1000;
+prodDeg;
+N = 20000;
 q = 0;
 pArray = zeros(1,N);
 squareSum = 0;
 
 tStart = tic;
 for i = 1:N
+    if mod(i,1000) == 0
+        i
+    end
     %i
     w = 1;
     t = 0;
@@ -61,4 +65,4 @@ var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-end
+%end

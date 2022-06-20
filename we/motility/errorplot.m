@@ -38,9 +38,10 @@ legend boxoff
 xlabel("Bin Size", 'fontsize', 20)
 ylabel("Probability", 'fontsize', 20)
 set (gca, 'linewidth', 4)
-%set(gca, 'YScale', 'log')
-ylim([-8*10^-07 3*10^-06])
-%ax = gca;
+set(gca, 'YScale', 'log')
+ylim([10^-10 10^-04])
+ax = gca;
+ax.FontSize = 24;
 %exportgraphics(ax,'yeast_estimate_log.png','Resolution',96)
 
 
@@ -55,6 +56,7 @@ xlabel("Bin Size", 'fontsize', 20)
 ylabel("Time(s)", 'fontsize', 20)
 set (gca, 'linewidth', 4)
 ay=gca;
+ay.FontSize = 24;
 %exportgraphics(ay,'yeast_time.png','Resolution',96)
 
 %{

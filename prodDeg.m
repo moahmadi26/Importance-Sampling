@@ -17,13 +17,13 @@ X0 = [1;
 F = [0;
      1]; %Target condition matrix (F^T*x_t=xp)
 
-xp = [65]; %target state (F^T*x_t=xp)
+xp = [70]; %target state (F^T*x_t=xp)
 
 tmax = 100; %total simulation time
 
 %% Original wSSA Parameters
 
-%delta = 1.2; %this is near optimal for this model
+delta = 1.2; %this is near optimal for this model
 alph = [delta;
          1/delta];
      
