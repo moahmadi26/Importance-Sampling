@@ -1,9 +1,9 @@
 t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 15;
+N = 200;
 time_step = 1;
-bin_pop = 100;
+bin_pop = 30;
 samples = (0);
 samples(end) = [];
 sim_samples = (0);
@@ -33,15 +33,13 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%bin_obj(1).traj_list(end+1) = trajectory(2,2,0.1,[1,2,3,4,5,6]);
-%bin_obj(2).traj_list(end+1) = bin_obj(1).traj_list(end+1);
-%bin_obj(1).traj_list(end+1) = [];
 futileCycle;
 
 sum_succ_weights = 0; 
 sum_fail_weights = 0; 
 num_succ = 0;
 num_fail = 0;
+total_traj_segments = 0;
 
 for i = 1:N
     i
@@ -71,6 +69,7 @@ for i = 1:N
                     curr_x = bin_obj(ii).traj_list(iii).x;
                     if curr_time < tmax
                         flag = false;
+                        total_traj_segments = total_traj_segments + 1;
                         while (curr_time - bin_obj(ii).traj_list(iii).time) < time_step
                             a = calculatePropensity(curr_x,k,S_in);
                             a0 = sum(a);
@@ -161,9 +160,7 @@ for i = 1:N
                 end
             end
         end
-            
-         %disp('hi');
-  
+              
     end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -178,16 +175,7 @@ for i = 1:N
             samples(end+1) = bin_obj(25).traj_list(ii).weight;
         end
     end
-%{
-    for ii=26:51
-        sz = bin_size(bin_obj(ii)); 
-        for iii=1:sz
-            num_fail = num_fail + 1;
-            sum_fail_weights = sum_fail_weights + bin_obj(ii).traj_list(iii).weight;
-            samples(end+1) = 0.0;
-        end
-    end
-%}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
        
     sim_samples(end+1) = sum(samples);
@@ -202,8 +190,8 @@ t_end = toc(t_start);
 
 p = sum_succ_weights/N;
 p1 = mean(sim_samples);
-v = var(samples);
+v = var(sim_samples);
 
-%SE = (1/sqrt(N))*sqrt(var);
+SE = (1/sqrt(N))*sqrt(v);
 %zstar = 1.96;
 %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval

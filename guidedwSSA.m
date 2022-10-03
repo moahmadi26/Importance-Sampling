@@ -1,10 +1,12 @@
-function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N, negativeMethod)
+%function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N, negativeMethod)
 %loading model parameters
 %input('Model Name? ')
-eval(modelFile)
+%eval(modelFile)
 
 %simulation runs
-%N = 1000000;
+circuit0x8E_TI;
+negativeMethod = 'C';
+N = 50000;
 
 %accumulator
 mn = 0;
@@ -14,6 +16,9 @@ pArray = zeros(N,1);
 
 tStart = tic;
 for i = 1:N
+   if mod(i,1000) == 0
+        i
+   end
    t = 0;
    delta_t = tmax - t;
    x = X0;
@@ -21,8 +26,8 @@ for i = 1:N
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
-       h = calculatePropensity(x, k, S_in);
-       %h = calculatePropensity0x8E(x);
+       %h = calculatePropensity(x, k, S_in);
+       h = calculatePropensity0x8E_TI(x);
        h0 = sum(h);
        
        if xp == F'*x
@@ -33,8 +38,8 @@ for i = 1:N
        
        %evaluate all di
        
-       d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
-       %d = presimulationCheck0x8E(x,F,S,delta_t,xp,X0);
+       %d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
+       d = presimulationCheck0x8E_TI(x,F,S,delta_t,xp,X0);
        
        %set h_tilde based on d. if all di>0 don't adjust model
        flag = 0;
@@ -48,8 +53,8 @@ for i = 1:N
             h_tilde = h;
       
        elseif flag == 1
-            h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
-            %h_tilde = calculatePredilection0x8E(x,S,F,delta_t,xp);
+            %h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
+            h_tilde = calculatePredilection0x8E_TI(x,S,F,delta_t,xp);
        end
        
        alph = h_tilde./h;
@@ -91,7 +96,7 @@ var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-end
+%end
 
 % %Plotting Convergence
 % runs = 0:length(pArray)-1;

@@ -90,7 +90,7 @@ gamma_max = ones(12,1);
 % gamma_max(10) = gamma_max_temp;
 % gamma_max(11) = gamma_max_temp;
 % gamma_max(12) = gamma_max_temp;
-
+gamma_value = gamma_max_temp;
 gamma_max(1) = gamma_value;
 gamma_max(2) = gamma_value;
 gamma_max(9) = gamma_value;

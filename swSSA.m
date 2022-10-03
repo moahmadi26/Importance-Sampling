@@ -1,11 +1,12 @@
-function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
+%function [p, pArray, var, conf, tEnd] = swSSA(modelFile, N)
 %input('Model Name? ')
 %input('swSSA Specific Input? ')
-global gamma_value
-eval(modelFile)
+%global gamma_value
+%eval(modelFile)
 
 %simulation runs
-%N = 10000;
+circuit0x8E_TI;
+N = 50000;
 
 %accumulator
 mn = 0;
@@ -21,8 +22,8 @@ for i = 1:N
    w = 1;
    pArray(i) = mn/i;
    
-   a = calculatePropensity(x, k, S_in);
-   %a = calculatePropensity0x8E(x);
+   %a = calculatePropensity(x, k, S_in);
+   a = calculatePropensity0x8E_TI(x);
    a0 = sum(a);
    rho = a/a0;
    gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -57,8 +58,8 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,it); 
         
-       a = calculatePropensity(x, k, S_in);
-       %a = calculatePropensity0x8E(x);
+       %a = calculatePropensity(x, k, S_in);
+       a = calculatePropensity0x8E_TI(x);
        a0 = sum(a);
        rho = a/a0;
        gamma = gammaFunction(rho_zero, gamma_max, rho, assignment);
@@ -75,7 +76,7 @@ var = squareSum/N - p^2;
 SE = (1/sqrt(N))*sqrt(var);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
-end
+%end
 
 
 function gamma = gammaFunction(rho_zero, gamma_max, rho, assignment)

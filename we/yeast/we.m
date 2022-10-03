@@ -1,9 +1,9 @@
 t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 2;
+N = 50;
 time_step = 0.125;
-bin_pop = 50;
+bin_pop = 100;
 samples = (0);
 samples(end) = [];
 sim_samples = (0);
@@ -37,6 +37,7 @@ yeastPolarization;
 succ_weights = zeros(1, N);
 num_succ = 0;
 sum_succ_weights = 0;
+total_traj_segments = 0;
 
 for i = 1:N
     
@@ -70,6 +71,7 @@ for i = 1:N
                     curr_x = bin_obj(ii).traj_list(iii).x;
                     if curr_time < tmax
                         flag = false;
+                        total_traj_segments = total_traj_segments + 1;
                         while (curr_time - bin_obj(ii).traj_list(iii).time) < time_step
                             a = calculatePropensity(curr_x,k,S_in);
                             a0 = sum(a);
@@ -200,6 +202,6 @@ p = sum_succ_weights/N;
 p1 = mean(sim_samples);
 v = var(sim_samples);
 
-%SE = (1/sqrt(N))*sqrt(var);
+SE = (1/sqrt(N))*sqrt(v);
 %zstar = 1.96;
 %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval

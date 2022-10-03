@@ -1,9 +1,9 @@
 t_start = tic;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simulation pararmeters
-N = 15;
+N = 150;
 time_step = 1.5;
-bin_pop = 10;
+bin_pop = 100;
 samples = (0);
 samples(end) = [];
 sim_samples = (0);
@@ -38,6 +38,7 @@ succ_weights = zeros(1, N);
 sum_succ_weights = 0; 
 
 num_succ = 0;
+total_traj_segments = 0;
 
 for i = 1:N
     
@@ -70,6 +71,7 @@ for i = 1:N
                     curr_x = bin_obj(ii).traj_list(iii).x;
                     if curr_time < tmax
                         flag = false;
+                        total_traj_segments = total_traj_segments + 1;
                         while (curr_time - bin_obj(ii).traj_list(iii).time) < time_step
                             a = calculatePropensity0x8E(curr_x);
                             a0 = sum(a);
@@ -197,10 +199,10 @@ end
 t_end = toc(t_start);
 
 p = sum_succ_weights/N;
-p2 = mean(sim_samples);
+p1 = mean(sim_samples);
 v = var(sim_samples);
 
-%SE = (1/sqrt(N))*sqrt(v);
+SE = (1/sqrt(N))*sqrt(v);
 %zstar = 1.96;
 %error = zstar*SE;
 %conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
