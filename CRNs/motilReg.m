@@ -1,4 +1,6 @@
 %% Model Details
+modelName = 'motilReg';
+
 %from guided proposals paper
 k = [0.1;
      0.0002;
@@ -58,7 +60,6 @@ xp = [20]; %target state (F^T*x_t=xp)
 
 tmax = 10; %total simulation time
 
-
 %% Original wSSA Parameters
 
 delta = 0.3; %this is near optimal for this model
@@ -97,5 +98,4 @@ gamma_max(9) = gamma_value;
 gamma_max(10) = gamma_value;
 gamma_max(11) = gamma_value;
 gamma_max(12) = gamma_value;
-
 

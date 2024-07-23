@@ -1,9 +1,6 @@
 %% Model Details
-% Circuit0x8E
-%%%%%%%%%%%%%%%%%%%%%
+modelName = 'circuit0x8E';
 
-
- 
 % Species: AmtR_protein, Ara_AraC_protein, BetI_protein, HlyIIR_protein,
 % LacI_protein, PhlF_protein, TetR_protein, YFP_protein,
 % topModel_AmtRpart_module_sub__pBAD,

@@ -1,20 +1,28 @@
 %function [p, pArray, var, conf, tEnd] = SSA(modelFile, N)
-%input('Model Name? ')
-%eval(modelFile)
+clearvars;
+addpath('CRNs');
+addpath('utils');
+model = input('Model Name? ', 's');
+run(model);
 
-circuit0x8E;
-N = 22000;
+N = 10000;
 q = 0;
 pArray = zeros(1,N);
 
 tStart = tic;
 for i = 1:N
-    %i
+    if mod(i,1000) == 0
+        i
+    end
     t = 0;
     x = X0;
     
-    %a = calculatePropensity(x,k,S_in);
-    a = calculatePropensity0x8E(x);
+    if strcmp(modelName, 'circuit0x8E')
+        a = calculatePropensity0x8E(x, S);
+    else
+        a = calculatePropensity(x, S_in, k);
+    end
+
     a0 = sum(a);
     
     while t < tmax
@@ -41,8 +49,12 @@ for i = 1:N
        t = t + tau;
        x = x + S(:,mu);
        
-       %a = calculatePropensity(x,k,S_in);
-       a = calculatePropensity0x8E(x);
+       if strcmp(modelName, 'circuit0x8E')
+           a = calculatePropensity0x8E(x, S);
+       else
+           a = calculatePropensity(x, S_in, k);
+       end
+       
        a0 = sum(a);
     end
     pArray(i) = q/i;
@@ -54,3 +66,4 @@ var = p - p^2;
 SE = sqrt(p*(1-p)/N);
 zstar = 1.96;
 conf = [p-zstar*SE,p+zstar*SE]; %95% confidence interval
+rmpath('CRNs')

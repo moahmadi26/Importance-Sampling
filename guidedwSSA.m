@@ -1,12 +1,13 @@
 %function [p, pArray, var, conf, tEnd] = guidedwSSA(modelFile, N, negativeMethod)
-%loading model parameters
-%input('Model Name? ')
-%eval(modelFile)
-
-%simulation runs
-circuit0x8E_TI;
+clearvars;
+addpath('CRNs');
+addpath('utils');
+addpath('utils/guidedwSSA');
+model = input('Model Name? ', 's');
+run(model);
 negativeMethod = 'C';
-N = 50000;
+
+N = 100000;
 
 %accumulator
 mn = 0;
@@ -26,8 +27,12 @@ for i = 1:N
    
    while t<tmax
        %evaluate all hj, h0 would be sum(h)
-       %h = calculatePropensity(x, k, S_in);
-       h = calculatePropensity0x8E_TI(x);
+       if strcmp(modelName, 'circuit0x8E')
+           h = calculatePropensity0x8E(x);
+       else
+           h = calculatePropensity(x, S_in, k);
+       end
+
        h0 = sum(h);
        
        if xp == F'*x
@@ -38,8 +43,11 @@ for i = 1:N
        
        %evaluate all di
        
-       %d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
-       d = presimulationCheck0x8E_TI(x,F,S,delta_t,xp,X0);
+       if strcmp(modelName, 'circuit0x8E')
+           d = presimulationCheck0x8E(x,F,S,delta_t,xp,X0);
+       else
+           d = presimulationCheck(x,F,S,k,delta_t,xp,X0, S_in);
+       end
        
        %set h_tilde based on d. if all di>0 don't adjust model
        flag = 0;
@@ -53,8 +61,11 @@ for i = 1:N
             h_tilde = h;
       
        elseif flag == 1
-            %h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
-            h_tilde = calculatePredilection0x8E_TI(x,S,F,delta_t,xp);
+           if strcmp(modelName, 'circuit0x8E') 
+               h_tilde = calculatePredilection0x8E(x,S,F,delta_t,xp);
+           else
+               h_tilde = calculatePredilection(x,k,S,F,delta_t,xp, S_in);
+           end
        end
        
        alph = h_tilde./h;

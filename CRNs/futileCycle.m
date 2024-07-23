@@ -1,4 +1,6 @@
 %% Model Details
+modelName = 'futileCycle';
+
 %from original wSSA paper
 k = [1;
     1;
@@ -43,7 +45,6 @@ F(5,1) = 1; %Target condition matrix (F^T*x_t=xp)
 xp = [25]; %target state (F^T*x_t=xp)
 
 tmax = 100; %total simulation time
-
 
 %% Original wSSA Parameters
 delta = 0.5; %this is near optimal for this model

@@ -1,4 +1,6 @@
 %% Model Details
+modelName = 'yeastPolarization';
+
 %from dwSSA paper
 k = [0.0038;
      0.0004;
@@ -33,7 +35,7 @@ X0 = [50;
       2;
       0;
       50;
-      0;%Mohammad help
+      0;
       0;
       0]; %Initial state
 
@@ -43,7 +45,6 @@ F(6,1) = 1; %Target condition matrix (F^T*x_t=xp)
 xp = [50]; %target state (F^T*x_t=xp)
 
 tmax = 20; %total simulation time
-
 
 %% Original wSSA Parameters
 
@@ -62,3 +63,4 @@ rho_zero(6) = 0.15;
 
 gamma_max = ones(8,1);
 gamma_max(6) = 20;
+
